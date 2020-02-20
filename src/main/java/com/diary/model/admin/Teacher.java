@@ -1,5 +1,6 @@
 package com.diary.model.admin;
 
+import com.diary.exception.WrongGradeValueException;
 import com.diary.model.Student;
 import com.diary.model.Subject;
 
@@ -17,7 +18,8 @@ public class Teacher {
     private String teacherName;
     private List<Map<Student, List<Grade>>> studentGrades;
 
-    public static Grade getGrade(Integer value, Subject subject) {
+    public static Grade createGrade(Integer value, Subject subject) throws WrongGradeValueException {
+        if (value < 2 || value > 6) throw new WrongGradeValueException("Grade value of: " + value + " is incorrect.");
         return new Grade(value, subject);
     }
 

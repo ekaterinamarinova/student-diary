@@ -1,6 +1,7 @@
 package steps;
 
 import com.diary.constant.ApplicationConstant;
+import com.diary.exception.WrongGradeValueException;
 import com.diary.model.Class;
 import com.diary.model.Student;
 import io.cucumber.java.en.And;
@@ -12,7 +13,7 @@ public class GetClassInformationSteps extends StepsUtil {
     private Class aClass;
 
     @Given("There is a valid class that has a teacher")
-    public void thereIsClassWithATeacher() throws InterruptedException {
+    public void thereIsClassWithATeacher() throws WrongGradeValueException {
         aClass = getClassInformation();
         Assert.assertNotNull(aClass);
     }

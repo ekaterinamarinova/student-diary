@@ -1,6 +1,7 @@
 package steps;
 
 import com.diary.constant.ApplicationConstant;
+import com.diary.exception.WrongGradeValueException;
 import com.diary.model.Class;
 import com.diary.model.Parent;
 import com.diary.model.Student;
@@ -17,11 +18,11 @@ public class StepsUtil {
         return new Student(ApplicationConstant.STUDENT_FIRST_NAME, ApplicationConstant.STUDENT_LAST_NAME);
     }
 
-    protected Class getClassInformation() throws InterruptedException {
+    protected Class getClassInformation() throws WrongGradeValueException {
        return new Class(getTeacher());
     }
 
-    protected Teacher getTeacher() throws InterruptedException {
+    protected Teacher getTeacher() throws WrongGradeValueException {
         Map<Student, List<Grade>> studentListMap = new HashMap<>(1);
         List<Grade> grades = new ArrayList<>();
         List<Map<Student, List<Grade>>> listOfMapOfStudents = new ArrayList<>(1);
@@ -34,18 +35,18 @@ public class StepsUtil {
         return new Teacher(ApplicationConstant.TEACHER_NAME, listOfMapOfStudents);
     }
 
-    protected Parent getParent() throws InterruptedException {
+    protected Parent getParent() throws WrongGradeValueException {
         Map<Student, List<Grade>> studentListMap = getTeacher().getStudentGrades().get(0);
         return new Parent(studentListMap);
     }
 
-    protected Grade getGrade() throws InterruptedException {
-        return Teacher.getGrade(returnRandomValueInRange(2, 6), new Subject(SubjectName.ARTS.getName()));
+    protected Grade getGrade() throws WrongGradeValueException {
+        return Teacher.createGrade(returnRandomValueInRange(2, 6), new Subject(SubjectName.ARTS.getName()));
     }
 
-    private int returnRandomValueInRange(int min, int max) {
+    public int returnRandomValueInRange(int min, int max) {
         Random random = new Random();
-        int current = random.nextInt(6);
+        int current = random.nextInt(max);
 
         if ((current >= min) & (current <= max)){
             return current;

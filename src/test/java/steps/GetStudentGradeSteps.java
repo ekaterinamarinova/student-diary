@@ -1,5 +1,6 @@
 package steps;
 
+import com.diary.exception.WrongGradeValueException;
 import com.diary.model.Parent;
 import com.diary.model.Student;
 import com.diary.model.admin.Grade;
@@ -30,7 +31,7 @@ public class GetStudentGradeSteps extends StepsUtil {
     }
 
     @When("Parent requests to see the grades")
-    public void whenParentRequestsToSeeGrades() throws InterruptedException {
+    public void whenParentRequestsToSeeGrades() throws WrongGradeValueException {
         parent = getParent();
         parent.getStudentList().forEach(
                 (stud, grList) -> {
