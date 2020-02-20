@@ -3,6 +3,7 @@ package steps;
 import com.diary.model.Student;
 import com.diary.model.Subject;
 import com.diary.model.admin.Teacher;
+import com.diary.model.enums.SubjectName;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -27,12 +28,12 @@ public class ChangeStudentGradesStep extends StepsUtil {
 
     @When("the teacher attempts to change a grade")
     public void theTeacherAttemptsChange() {
-        teacher.getStudentGrades().get(0).get(student).set(0, Teacher.getGrade(3, new Subject("Sports")));
+        teacher.getStudentGrades().get(0).get(student).set(0, Teacher.getGrade(3, new Subject(SubjectName.SPORTS.getName())));
     }
 
     @Then("grade is changed")
     public void gradeIsChanged() {
-        Assert.assertEquals("Sports", teacher.getStudentGrades().get(0)
+        Assert.assertEquals(SubjectName.SPORTS.getName(), teacher.getStudentGrades().get(0)
                 .get(student)
                 .get(0)
                 .getSubject()

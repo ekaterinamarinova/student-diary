@@ -1,5 +1,6 @@
 package steps;
 
+import com.diary.constant.ApplicationConstant;
 import com.diary.model.Class;
 import com.diary.model.Student;
 import io.cucumber.java.en.And;
@@ -19,7 +20,7 @@ public class GetClassInformationSteps extends StepsUtil {
     @And("There are valid students assigned to the teacher")
     public void thereAreStudents() {
         aClass.getClassTeacher().getStudentGrades().forEach(s -> {
-            boolean hasStudent = s.containsKey(new Student("Peshko", "Peshev"));
+            boolean hasStudent = s.containsKey(new Student(ApplicationConstant.STUDENT_FIRST_NAME, ApplicationConstant.STUDENT_LAST_NAME));
             Assert.assertTrue(hasStudent);
         });
     }

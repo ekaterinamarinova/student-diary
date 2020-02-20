@@ -1,11 +1,13 @@
 package steps;
 
+import com.diary.constant.ApplicationConstant;
 import com.diary.model.Class;
 import com.diary.model.Parent;
 import com.diary.model.Student;
 import com.diary.model.Subject;
 import com.diary.model.admin.Grade;
 import com.diary.model.admin.Teacher;
+import com.diary.model.enums.SubjectName;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import java.util.Map;
 public class StepsUtil {
 
     protected Student getStudent() {
-        return new Student("Peshko", "Peshev");
+        return new Student(ApplicationConstant.STUDENT_FIRST_NAME, ApplicationConstant.STUDENT_LAST_NAME);
     }
 
     protected Class getClassInformation() throws InterruptedException {
@@ -33,7 +35,7 @@ public class StepsUtil {
 
         studentListMap.put(student, grades);
         listOfMapOfStudents.add(studentListMap);
-        return new Teacher("Gosho", listOfMapOfStudents);
+        return new Teacher(ApplicationConstant.TEACHER_NAME, listOfMapOfStudents);
     }
 
     protected Parent getParent() throws InterruptedException {
@@ -42,7 +44,7 @@ public class StepsUtil {
     }
 
     protected Grade getGrade() throws InterruptedException {
-        return Teacher.getGrade(returnRandomValueInRange(2, 6), new Subject("Arts"));
+        return Teacher.getGrade(returnRandomValueInRange(2, 6), new Subject(SubjectName.ARTS.getName()));
     }
 
     private synchronized int returnRandomValueInRange(int min, int max) throws InterruptedException {
