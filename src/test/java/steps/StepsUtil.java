@@ -46,10 +46,9 @@ public class StepsUtil {
     private int returnRandomValueInRange(int min, int max) {
         Random random = new Random();
         int current = random.nextInt(6);
-        int res = Integer.parseInt(Double.toString(current).substring(0,1));
 
-        if ((res >= min) & (res <= max)){
-            return res;
+        if ((current >= min) & (current <= max)){
+            return current;
         } else {
             return returnRandomValueInRange(min, max);
         }
