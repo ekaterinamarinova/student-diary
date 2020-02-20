@@ -1,9 +1,9 @@
-package tests;
+package runner;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(dryRun = true)
+@CucumberOptions(plugin = {"pretty"}, features = {"src/test/java/feature/"}, glue = "steps")
 public class CucumberRunner {
 }

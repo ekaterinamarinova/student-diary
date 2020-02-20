@@ -1,6 +1,3 @@
-# new feature
-# Tags: optional
-
 Feature: The students' grades are returned
 
   Scenario: Parent can get information about a student

@@ -1,20 +1,17 @@
 package com.diary.model;
 
-import java.util.List;
+import java.util.Objects;
 
 public class Student {
 
-    public Student(String studentFirstName, String studentLastName, List<Grade> gradeList) {
+    public Student(String studentFirstName, String studentLastName) {
         this.studentFirstName = studentFirstName;
         this.studentLastName = studentLastName;
-        this.gradeList = gradeList;
     }
 
     private String studentFirstName;
 
     private String studentLastName;
-
-    private List<Grade> gradeList;
 
     public String getStudentFirstName() {
         return studentFirstName;
@@ -32,11 +29,25 @@ public class Student {
         this.studentLastName = studentLastName;
     }
 
-    public List<Grade> getGradeList() {
-        return gradeList;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(studentFirstName, student.studentFirstName) &&
+                Objects.equals(studentLastName, student.studentLastName);
     }
 
-    public void setGradeList(List<Grade> gradeList) {
-        this.gradeList = gradeList;
+    @Override
+    public int hashCode() {
+        return Objects.hash(studentFirstName, studentLastName);
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentFirstName='" + studentFirstName + '\'' +
+                ", studentLastName='" + studentLastName + '\'' +
+                '}';
     }
 }

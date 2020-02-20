@@ -1,12 +1,16 @@
 package com.diary.model;
 
-import java.util.List;
+import com.diary.model.admin.Teacher;
+
+import java.util.Objects;
 
 public class Class {
 
-    private Teacher classTeacher;
+    public Class(Teacher classTeacher) {
+        this.classTeacher = classTeacher;
+    }
 
-    private List<String> subjectList;
+    private Teacher classTeacher;
 
     public Teacher getClassTeacher() {
         return classTeacher;
@@ -16,12 +20,23 @@ public class Class {
         this.classTeacher = classTeacher;
     }
 
-    public List<String> getSubjectList() {
-        return subjectList;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Class aClass = (Class) o;
+        return Objects.equals(classTeacher, aClass.classTeacher);
     }
 
-    public void setSubjectList(List<String> subjectList) {
-        this.subjectList = subjectList;
+    @Override
+    public int hashCode() {
+        return Objects.hash(classTeacher);
     }
 
+    @Override
+    public String toString() {
+        return "Class{" +
+                "classTeacher=" + classTeacher +
+                '}';
+    }
 }
