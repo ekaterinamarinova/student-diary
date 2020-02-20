@@ -9,11 +9,7 @@ import com.diary.model.admin.Grade;
 import com.diary.model.admin.Teacher;
 import com.diary.model.enums.SubjectName;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StepsUtil {
 
@@ -47,18 +43,15 @@ public class StepsUtil {
         return Teacher.getGrade(returnRandomValueInRange(2, 6), new Subject(SubjectName.ARTS.getName()));
     }
 
-    private synchronized int returnRandomValueInRange(int min, int max) throws InterruptedException {
-        int hour = LocalDateTime.now().getHour();
-        int random = LocalDateTime.now().getSecond() * hour;
+    private int returnRandomValueInRange(int min, int max) {
+        Random random = new Random();
+        int current = random.nextInt(6);
+        int res = Integer.parseInt(Double.toString(current).substring(0,1));
 
-        int res = Integer.parseInt(Integer.toString(random).substring(0,1));
-
-        wait(100);
-        if ((res > min) & (res < max)){
+        if ((res >= min) & (res <= max)){
             return res;
         } else {
             return returnRandomValueInRange(min, max);
         }
-
     }
 }
